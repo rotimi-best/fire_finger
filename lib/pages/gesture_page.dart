@@ -78,7 +78,7 @@ class _GesturePageState extends State<GesturePage> {
                 otherAccountsPictures: <Widget>[
                   CircleAvatar(
                       child: Text('rb'),
-                      backgroundColor: Colors.white60,
+                      backgroundColor: Colors.white54,
                     )
                 ],
               ),

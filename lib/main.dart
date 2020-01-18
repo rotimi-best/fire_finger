@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_socket_io/flutter_socket_io.dart';
-import 'package:flutter_socket_io/socket_io_manager.dart';
-// import './pages/home_page.dart';
-import './pages/gesture_page.dart';
+import 'dart:async';
+// import 'package:flutter_socket_io/flutter_socket_io.dart';
+// import 'package:flutter_socket_io/socket_io_manager.dart';
+import './pages/home_page.dart';
+// import './pages/gesture_page.dart';
 
 void main() {
-  SocketIO socketIO = SocketIOManager().createSocketIO("https://rotimi-best-fluttersocket.glitch.me", "/");
+  
+  // SocketIO socketIO = SocketIOManager().createSocketIO("https://rotimi-best-fluttersocket.glitch.me", "/");
 
   //call init socket before doing anything
-	socketIO.init();
+	// socketIO.init();
 
 	//connect socket
-	socketIO.connect();
+	// socketIO.connect();
 
   // _destroySocket() {
   //   if (socketIO != null) {
@@ -19,9 +21,42 @@ void main() {
   //   }
   // }
 
+
+
   runApp(new MaterialApp(
-      home: new GesturePage(
-        socketIO: socketIO,
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
+  ));
+}
+
+class MyApp extends StatefulWidget {
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+      Duration(seconds: 3),
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+        );
+      }
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Image.asset('../assets/images/splash.png')
       ),
-    ));
+    );
+  }
 }
